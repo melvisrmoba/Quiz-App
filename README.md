@@ -6,8 +6,8 @@ A responsive React based trivia application that fetches real-time quiz question
 
 ## Live Demo
 
-**Demo** : [https://quizze-me-app.netlify.app/]
-**Repository** : [https://github.com/melvisrmoba/Quiz-App]
+**Demo** : https://quizze-me-app.netlify.app/  
+**Repository** : https://github.com/melvisrmoba/Quiz-App
 
 ---
 
