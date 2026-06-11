@@ -159,7 +159,7 @@ Below are differents potential enhancements to this project:
 
 ## Author
 
-**Melvis Moba**
+**Melvis Moba**  
 Frontend developer focused on building responsive, scalabel and user-centered web applications using React and modern Javascript.
 
 ---
