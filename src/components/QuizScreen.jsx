@@ -1,4 +1,5 @@
 import QuestionCard from "./QuestionCard";
+import Button from "./Button";
 /** This component is responsible for:
  * 1. Rendering ALL quiz questions
  * 2.Tracking questions to ensure they are all answered (complete state)
@@ -53,9 +54,11 @@ export default function QuizScreen({
         />
       ))}
       {/* button disabled untill all questions are answered to prevent partial submission*/}
-      <button className="btn-check-answers" disabled={!allAnswered}>
-        Check Answers
-      </button>
+      <Button
+        onClick={onFinish}
+        children="Check Answers"
+        disabled={!allAnswered}
+      />
     </form>
   );
 }

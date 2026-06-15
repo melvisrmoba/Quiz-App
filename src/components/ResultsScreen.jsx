@@ -1,4 +1,5 @@
 import AnswerOption from "./AnswerOption";
+import Button from "./Button";
 
 /**
  * ResultScreen displays
@@ -75,7 +76,7 @@ export default function ResultsScreen({
         <p className="score-text">
           You scored {score}/{questions.length} correct answers
         </p>
-        <button onClick={onRestart}>Play Again</button>
+        <Button onClick={onRestart} children="Play Again" />
       </div>
     </div>
   );
