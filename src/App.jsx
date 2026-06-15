@@ -87,6 +87,38 @@ function App() {
     setStatus("start"); // sends user back to start screen
   }
 
+  /** ELECTED ANSWER  HANDLER*/
+  function handleSelectedAnswer(qId, answerIndex) {
+    // This function is not used directly in App, but is passed down to child components for handling answer selection.
+    // It updates the selected answer for a specific question in a centralized way.
+
+    setSelectedAnswers((prev) => ({
+      ...prev,
+      [qId]: answerIndex,
+    }));
+  }
+
+  /* RENDERING LOGIC */
+
+  /**
+   * The app conditionally renders one of three screens based on the current status:
+   * - StartScreen: shown when status is "start"
+   * - QuizScreen: shown when status is "playing"
+   * - ResultsScreen: shown when status is "finished"
+   *
+   * Each screen receives props relevant to its functionality, such as event handlers and quiz data.
+   *
+   * QuizScreen is responsible for rendering questions and handling answer selection, while ResultsScreen focuses on displaying results and allowing quiz restart.
+   *
+   * This separation of concerns keeps the app organized and makes each component easier to manage and test.
+   *
+   * ResultsScreen displays:
+   * -final quiz score
+   * -reviewed answers
+   * -correct/iincorrect answer states.
+   *
+   * THis component reuses AnswerOption in "review mode"  by enabling showResults. No local state required; UI derived from props
+   */
   return (
     <>
       {/** START SCREEN */}
