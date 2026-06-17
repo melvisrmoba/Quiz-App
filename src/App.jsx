@@ -51,6 +51,7 @@ function App() {
 
     /** Transform API data into a structure that is easier to use in our app */
     const formattedQuestions = data.results.map((q, index) => {
+      //console.log(q);
       //Combine incorrect and correct answers into one array
       const answers = [
         ...q.incorrect_answers.map(decodeHTML), // decode each incorrect answer
@@ -67,6 +68,7 @@ function App() {
         correctAnswerIndex: shuffled.indexOf(decodeHTML(q.correct_answer)),
       };
     });
+    console.log(data);
 
     setQuestions(formattedQuestions); // save formated questions into state
     setSelectedAnswers({}); //Reser any previous answers (this is vital especially when restarting quiz)
@@ -141,6 +143,8 @@ function App() {
           onRestart={handleRestart} //Restart quiz
           questions={questions} //Needed to calculate score
           selectedAnswers={selectedAnswers} //User's answers
+          onSelectAnswer={handleSelectedAnswer} // function to update answers (if we want to allow answer changes in review mode)
+          showResults={showResults} //controls answer locking and result display
         />
       )}
     </>

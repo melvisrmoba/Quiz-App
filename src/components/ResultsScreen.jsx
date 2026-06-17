@@ -1,5 +1,6 @@
-import AnswerOption from "./AnswerOption";
+import QuestionCard from "./QuestionCard";
 import Button from "./Button";
+import { Fragment } from "react";
 
 /**
  * ResultScreen displays
@@ -19,17 +20,6 @@ export default function ResultsScreen({
     return selectedAnswers[q.id] === q.correctAnswerIndex ? total + 1 : total;
   }, 0);
 
-  // Debug log for answer validation
-
-  // questions.forEach((q) => {
-  //   console.log({
-  //     question: q.id,
-  //     selected: selectedAnswers[q.id],
-  //     correct: q.correctAnswerIndex,
-  //     match: selectedAnswers[q.id] === q.correctAnswerIndex,
-  //   });
-  // });
-
   return (
     <div className="container">
       {/* 🔥 Review Section */}
@@ -38,36 +28,21 @@ export default function ResultsScreen({
           /**
            * Fragment groups question card and divider without introducing unnecessary DOM nodes
            */
-          <>
-            <fieldset key={q.id} className="questionCard-container">
-              <legend className="question-text">{q.question}</legend>
-              <div className="answers">
-                {/**
-                 * Render answers in review-only mode.
-                 *
-                 * Interaction is disabled via showResults.
-                 * Correct/wrong styling is handled internally by AnswerOption
-                 */}
-                {q.answers.map((ans, index) => {
-                  return (
-                    <AnswerOption
-                      key={index}
-                      qId={q.id}
-                      index={index}
-                      options={ans}
-                      selectedAnswer={selectedAnswers[q.id]}
-                      correctAnswerIndex={q.correctAnswerIndex}
-                      //Enables result styling and disables interaction
-                      showResults={true}
-                    />
-                  );
-                })}
-              </div>
-            </fieldset>
-
-            {/** Visual separation between reviewed question */}
-            <div className="question-divider"></div>
-          </>
+          <Fragment key={q.id}>
+            <QuestionCard
+              key={q.id} //stable identity for React reconcilliation
+              qId={q.id}
+              question={q.question}
+              answers={q.answers}
+              //index used instead of value comparison for performance and consistency
+              correctAnswerIndex={q.correctAnswerIndex}
+              //State lifted to parent for contralized control
+              selectedAnswer={selectedAnswers[q.id]}
+              onSelectAnswer={() => {}} //No-op since we don't want to allow answer changes in review mode
+              //Used for result highlighting after submission
+              showResults={true}
+            />
+          </Fragment>
         );
       })}
 

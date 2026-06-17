@@ -52,7 +52,6 @@ export default function AnswerOption({
         type="radio"
         //group answers aby question
         name={qId}
-        qId={qId}
         value={options}
         //controlled input
         checked={isSelected}
