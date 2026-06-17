@@ -5,16 +5,16 @@ export default function AnswerOption({
   qId, //question id
   options, //the text of this answer option
   index,
-  selectedAnswers,
-  setSelectedAnswers,
+  selectedAnswer,
+  onSelectAnswer,
   correctAnswerIndex,
   showResults = false,
 }) {
   //Selected answer index for current question
-  const selectedIndex = selectedAnswers[qId];
+  // const selectedIndex = selectedAnswer;
 
   //UI state derivation
-  const isSelected = selectedIndex === index;
+  const isSelected = selectedAnswer === index;
   const isCorrect = index === correctAnswerIndex;
   const isWrongSelected = isSelected && !isCorrect;
 
@@ -35,12 +35,8 @@ export default function AnswerOption({
    */
   function handleSelect() {
     if (showResults) return; //prevent answer mutation after submissioon (lock in submit)
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [qId]: index,
-    }));
+    onSelectAnswer(qId, index);
   }
-
   return (
     /**
      * Label wrapper improves accessibility and increases clickable target area
@@ -56,6 +52,7 @@ export default function AnswerOption({
         type="radio"
         //group answers aby question
         name={qId}
+        qId={qId}
         value={options}
         //controlled input
         checked={isSelected}

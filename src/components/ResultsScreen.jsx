@@ -55,7 +55,7 @@ export default function ResultsScreen({
                       qId={q.id}
                       index={index}
                       options={ans}
-                      selectedAnswers={selectedAnswers}
+                      selectedAnswer={selectedAnswers[q.id]}
                       correctAnswerIndex={q.correctAnswerIndex}
                       //Enables result styling and disables interaction
                       showResults={true}

@@ -15,8 +15,8 @@ export default function QuestionCard({
   qId,
   question,
   answers,
-  selectedAnswers,
-  setSelectedAnswers,
+  selectedAnswer,
+  onSelectAnswer,
   correctAnswerIndex,
   showResults,
 }) {
@@ -36,9 +36,9 @@ export default function QuestionCard({
             options={option} // answer value
             key={index}
             index={index} //used for answer  matching/comparisonn
-            qId={qId} //Question Identity
-            selectedAnswers={selectedAnswers}
-            setSelectedAnswers={setSelectedAnswers}
+            qId={qId}
+            selectedAnswer={selectedAnswer}
+            onSelectAnswer={onSelectAnswer} //function to update selected answer in parent state
             //Used for result highlighting after submission
             correctAnswerIndex={correctAnswerIndex}
             showResults={showResults}

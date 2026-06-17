@@ -94,7 +94,7 @@ function App() {
 
     setSelectedAnswers((prev) => ({
       ...prev,
-      [qId]: answerIndex,
+      [String(qId)]: answerIndex,
     }));
   }
 
@@ -130,7 +130,7 @@ function App() {
           onFinish={handleFinish} // Called when user submits quiz
           questions={questions} //All quiz questions
           selectedAnswers={selectedAnswers} //User's selected answers
-          setSelectedAnswers={setSelectedAnswers} // function to update answers
+          onSelectAnswer={handleSelectedAnswer} // function to update answers
           showResults={showResults} //controls answer locking
         />
       )}

@@ -11,7 +11,7 @@ export default function QuizScreen({
   onFinish,
   questions,
   selectedAnswers,
-  setSelectedAnswers,
+  onSelectAnswer,
   showResults,
 }) {
   /** DERIVED STATE
@@ -20,7 +20,7 @@ export default function QuizScreen({
    * Each question must have exactly one answer
    *
    * Trade-off:
-   * Using Object.keys is fast and simple, and assumes selectedAnswers stays in sync with questions.
+   * Using Object.keys is fast and simple, and assumes selectedAnswer stays in sync with questions.
    *
    *
    */
@@ -46,13 +46,14 @@ export default function QuizScreen({
           question={q.question}
           answers={q.answers}
           //index used instead of value comparison for performance and consistency
-          correctAnswer={q.correctAnswerIndex}
+          correctAnswerIndex={q.correctAnswerIndex}
           //State lifted to parent for contralized control
-          selectedAnswers={selectedAnswers}
-          setSelectedAnswers={setSelectedAnswers}
+          selectedAnswer={selectedAnswers[String(q.id)]}
+          onSelectAnswer={onSelectAnswer}
           showResults={showResults}
         />
       ))}
+
       {/* button disabled untill all questions are answered to prevent partial submission*/}
       <Button
         onClick={onFinish}
